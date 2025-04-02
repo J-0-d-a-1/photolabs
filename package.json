@@ -1,0 +1,19 @@
+{
+  "name": "photolabs",
+  "version": "1.0.0",
+  "description": "The PhotoLabs project for the Web Development React course programming.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J-0-d-a-1/photolabs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J-0-d-a-1/photolabs/issues"
+  },
+  "homepage": "https://github.com/J-0-d-a-1/photolabs#readme"
+}
