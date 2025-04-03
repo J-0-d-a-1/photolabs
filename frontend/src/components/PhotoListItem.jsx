@@ -1,5 +1,6 @@
-import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
+
+import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
   const {

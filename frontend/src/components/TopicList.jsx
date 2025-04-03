@@ -1,5 +1,6 @@
-import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
+
+import "../styles/TopicList.scss";
 
 const sampleDataForTopicList = [
   {
