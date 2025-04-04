@@ -6,7 +6,7 @@ const PhotoList = ({
   photos,
   toggleFavorite,
   favoritePhotoIds,
-  modal,
+  isModalOpen,
   handleClickModal,
 }) => {
   const photosList = photos.map((photo) => {
@@ -16,7 +16,7 @@ const PhotoList = ({
         photo={photo}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={favoritePhotoIds}
-        modal={modal}
+        isModalOpen={isModalOpen}
         handleClickModal={handleClickModal}
       />
     );

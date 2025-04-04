@@ -3,9 +3,9 @@ import { useState } from "react";
 import HomeRoute from "./routes/HomeRoute";
 import photos from "./mocks/photos";
 import topics from "./mocks/topics";
+import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 
 import "./App.scss";
-import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
@@ -22,24 +22,28 @@ const App = () => {
     }
   };
 
-  const [modal, setModal] = useState("close");
-  const toggleModal = () => {
-    modal === "close" ? setModal("open") : setModal("close");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModalOpen = () => {
+    !isModalOpen ? setIsModalOpen(true) : setIsModalOpen(false);
   };
-  const handleClickModal = () => toggleModal();
+  const handleClickModal = () => toggleModalOpen();
 
   return (
     <div className="App">
       <HomeRoute
         photos={photos}
         topics={topics}
-        modal={modal}
+        isModalOpen={isModalOpen}
         handleClickModal={handleClickModal}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={favoritePhotoIds}
       />
-      {modal === "open" && (
-        <PhotoDetailsModal modal={modal} handleClickModal={handleClickModal} />
+      {isModalOpen && (
+        <PhotoDetailsModal
+          photos={photos}
+          isModalOpen={isModalOpen}
+          handleClickModal={handleClickModal}
+        />
       )}
     </div>
   );

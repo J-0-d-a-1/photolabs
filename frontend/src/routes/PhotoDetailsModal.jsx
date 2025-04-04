@@ -2,7 +2,11 @@ import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 
 const PhotoDetailsModal = (props) => {
-  const { modal, handleClickModal } = props;
+  const { photos, isModalOpen, handleClickModal } = props;
+
+  const id = event.target.id;
+  const photo = photos[id];
+  console.log(photo);
 
   return (
     <div className="photo-details-modal">
