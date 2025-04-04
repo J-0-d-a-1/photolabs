@@ -4,11 +4,11 @@ import "../styles/PhotoFavButton.scss";
 
 import FavIcon from "./FavIcon";
 
-const PhotoFavButton = () => {
+const PhotoFavButton = ({ id, toggleFavorite, favoritePhotoIds }) => {
   const [selected, setSelected] = useState(false);
 
   const isLiked = () => {
-    setSelected(!selected);
+    setSelected((prev) => !prev);
   };
 
   const handleClick = () => isLiked();

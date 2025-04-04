@@ -9,10 +9,15 @@ const PhotoListItem = (props) => {
     id,
     location,
   } = props.photo;
+  const { toggleFavorite, favoritePhotoIds } = props;
 
   return (
     <div className="photo-list__item">
-      <PhotoFavButton id={id} />
+      <PhotoFavButton
+        id={id}
+        toggleFavorite={toggleFavorite}
+        favoritePhotoIds={favoritePhotoIds}
+      />
       <img className="photo-list__image" src={full} alt="photo" />
       <div className="photo-list__user-details">
         <img
