@@ -4,11 +4,14 @@ import "../styles/PhotoFavButton.scss";
 
 import FavIcon from "./FavIcon";
 
-const PhotoFavButton = (props) => {
-  const { id } = props;
+const PhotoFavButton = () => {
   const [selected, setSelected] = useState(false);
 
-  const handleClick = () => setSelected((prevSelected) => !prevSelected);
+  const isLiked = () => {
+    setSelected(!selected);
+  };
+
+  const handleClick = () => isLiked();
 
   return (
     <div onClick={handleClick} className="photo-list__fav-icon">
