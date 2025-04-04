@@ -6,7 +6,7 @@ import "../styles/HomeRoute.scss";
 const HomeRoute = ({ photos, topics, toggleFavorite, favoritePhotoIds }) => {
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} />
+      <TopNavigation topics={topics} favoritePhotoIds={favoritePhotoIds} />
       <PhotoList
         photos={photos}
         toggleFavorite={toggleFavorite}
