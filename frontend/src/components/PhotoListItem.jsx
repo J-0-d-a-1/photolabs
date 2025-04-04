@@ -9,8 +9,7 @@ const PhotoListItem = (props) => {
     id,
     location,
   } = props.photo;
-  const { toggleFavorite, favoritePhotoIds, isModalOpen, handleClickModal } =
-    props;
+  const { toggleFavorite, favoritePhotoIds, handleClickModal } = props;
 
   return (
     <div className="photo-list__item">

@@ -22,9 +22,17 @@ const App = () => {
     }
   };
 
+  const [selectedPhoto, setSelectedPhoto] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModalOpen = () => {
-    !isModalOpen ? setIsModalOpen(true) : setIsModalOpen(false);
+    const id = event.target.id;
+    if (!isModalOpen) {
+      setIsModalOpen(true);
+      setSelectedPhoto(photos[id]);
+    } else {
+      setIsModalOpen(false);
+      setSelectedPhoto({});
+    }
   };
   const handleClickModal = () => toggleModalOpen();
 
@@ -33,7 +41,6 @@ const App = () => {
       <HomeRoute
         photos={photos}
         topics={topics}
-        isModalOpen={isModalOpen}
         handleClickModal={handleClickModal}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={favoritePhotoIds}
@@ -41,7 +48,7 @@ const App = () => {
       {isModalOpen && (
         <PhotoDetailsModal
           photos={photos}
-          isModalOpen={isModalOpen}
+          selectedPhoto={selectedPhoto}
           handleClickModal={handleClickModal}
         />
       )}

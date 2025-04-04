@@ -8,7 +8,6 @@ const HomeRoute = ({
   topics,
   toggleFavorite,
   favoritePhotoIds,
-  isModalOpen,
   handleClickModal,
 }) => {
   return (
@@ -18,7 +17,6 @@ const HomeRoute = ({
         photos={photos}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={favoritePhotoIds}
-        isModalOpen={isModalOpen}
         handleClickModal={handleClickModal}
       />
     </div>
