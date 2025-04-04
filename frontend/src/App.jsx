@@ -11,13 +11,15 @@ const App = () => {
   const [favoritePhotoIds, setFavoritePhotoIds] = useState([]);
 
   const toggleFavorite = (photoId) => {
-    setFavoritePhotoIds((prev) => {
-      if (prev.includes(photoId)) {
-        prev.filter((id) => id !== photoId);
-      } else {
-        [...prev, photoId];
-      }
-    });
+    if (favoritePhotoIds.includes(photoId)) {
+      const updatedFarvoritePhotoIds = favoritePhotoIds.filter(
+        (id) => id !== photoId
+      );
+      setFavoritePhotoIds(updatedFarvoritePhotoIds);
+    } else {
+      const updatedFarvoritePhotoIds = [...favoritePhotoIds, photoId];
+      setFavoritePhotoIds(updatedFarvoritePhotoIds);
+    }
   };
 
   return (

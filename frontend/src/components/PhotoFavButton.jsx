@@ -11,7 +11,10 @@ const PhotoFavButton = ({ id, toggleFavorite, favoritePhotoIds }) => {
     setSelected((prev) => !prev);
   };
 
-  const handleClick = () => isLiked();
+  const handleClick = () => {
+    toggleFavorite(id);
+    isLiked();
+  };
 
   return (
     <div onClick={handleClick} className="photo-list__fav-icon">
