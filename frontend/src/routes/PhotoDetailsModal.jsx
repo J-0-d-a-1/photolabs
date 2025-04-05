@@ -9,8 +9,6 @@ const PhotoDetailsModal = (props) => {
 
   const { location, urls, user, similar_photos } = selectedPhoto;
 
-  console.log(selectedPhoto);
-
   return (
     <div className="photo-details-modal">
       <button
@@ -21,7 +19,7 @@ const PhotoDetailsModal = (props) => {
       </button>
       <section className="photo-details-modal__images ">
         <img
-          className=".photo-details-modsl__image"
+          className="photo-details-modsl__image"
           src={urls.regular}
           alt="Selected Photo"
         />
@@ -29,7 +27,7 @@ const PhotoDetailsModal = (props) => {
           <img
             className="photo-details-modal__photographer-profile"
             src={user.profile}
-            alt="user's photo"
+            alt="{user.username}'s photo"
           />
           <div className="photo-details-modal__photographer-info">
             <article>{user.username}</article>
