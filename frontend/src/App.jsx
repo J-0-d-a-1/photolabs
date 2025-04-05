@@ -47,8 +47,9 @@ const App = () => {
       />
       {isModalOpen && (
         <PhotoDetailsModal
-          photos={photos}
           selectedPhoto={selectedPhoto}
+          toggleFavorite={toggleFavorite}
+          favoritePhotoIds={favoritePhotoIds}
           handleClickModal={handleClickModal}
         />
       )}

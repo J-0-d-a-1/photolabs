@@ -32,11 +32,11 @@ const PhotoListItem = (props) => {
           alt="uesr's photo"
         />
         <div className="photo-list__user-info">
-          <p>{username}</p>
+          <article>{username}</article>
           <div className="photo-list__user-location">
-            <p>
+            <article>
               {location.city}, {location.country}
-            </p>
+            </article>
           </div>
         </div>
       </div>
