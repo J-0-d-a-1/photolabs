@@ -8,13 +8,9 @@ import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 import "./App.scss";
 
 // Note: Rendering a single component to build components in isolation
-const App = (props) => {
-  const { state, toggleFavorite, handleClickModal } = useApplicationData(
-    [],
-    {},
-    false,
-    photos
-  );
+const App = () => {
+  const { state, toggleFavorite, handleClickModal } =
+    useApplicationData(photos);
 
   return (
     <div className="App">
