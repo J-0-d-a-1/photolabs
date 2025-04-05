@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useApplicationData from "./hooks/useApplicationData";
 
 import HomeRoute from "./routes/HomeRoute";
 import photos from "./mocks/photos";
@@ -8,33 +8,13 @@ import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 import "./App.scss";
 
 // Note: Rendering a single component to build components in isolation
-const App = () => {
-  const [favoritePhotoIds, setFavoritePhotoIds] = useState([]);
-  const toggleFavorite = (photoId) => {
-    if (favoritePhotoIds.includes(photoId)) {
-      const updatedFarvoritePhotoIds = favoritePhotoIds.filter(
-        (id) => id !== photoId
-      );
-      setFavoritePhotoIds(updatedFarvoritePhotoIds);
-    } else {
-      const updatedFarvoritePhotoIds = [...favoritePhotoIds, photoId];
-      setFavoritePhotoIds(updatedFarvoritePhotoIds);
-    }
-  };
-
-  const [selectedPhoto, setSelectedPhoto] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModalOpen = () => {
-    const id = event.target.id;
-    if (!isModalOpen) {
-      setIsModalOpen(true);
-      setSelectedPhoto(photos[id]);
-    } else {
-      setIsModalOpen(false);
-      setSelectedPhoto({});
-    }
-  };
-  const handleClickModal = () => toggleModalOpen();
+const App = (props) => {
+  const { state, toggleFavorite, handleClickModal } = useApplicationData(
+    [],
+    {},
+    false,
+    photos
+  );
 
   return (
     <div className="App">
@@ -43,13 +23,13 @@ const App = () => {
         topics={topics}
         handleClickModal={handleClickModal}
         toggleFavorite={toggleFavorite}
-        favoritePhotoIds={favoritePhotoIds}
+        favoritePhotoIds={state.favoritePhotoIds}
       />
-      {isModalOpen && (
+      {state.isModalOpen && (
         <PhotoDetailsModal
-          selectedPhoto={selectedPhoto}
+          selectedPhoto={state.selectedPhoto}
           toggleFavorite={toggleFavorite}
-          favoritePhotoIds={favoritePhotoIds}
+          favoritePhotoIds={state.favoritePhotoIds}
           handleClickModal={handleClickModal}
         />
       )}
