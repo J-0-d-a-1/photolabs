@@ -1,15 +1,30 @@
+import { useEffect } from "react";
 import useApplicationData, { ACTIONS } from "./hooks/useApplicationData";
 
 import HomeRoute from "./routes/HomeRoute";
-import photos from "./mocks/photos";
-import topics from "./mocks/topics";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 
 import "./App.scss";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const { state, dispatch } = useApplicationData(photos);
+  const { state, dispatch } = useApplicationData();
+
+  useEffect(() => {
+    fetch("/api/photos")
+      .then((res) => res.json())
+      .then((data) =>
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
+      );
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/topics")
+      .then((res) => res.json())
+      .then((data) =>
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data })
+      );
+  }, []);
 
   const toggleFavorite = (photoId) => {
     dispatch({ type: ACTIONS.TOGGLE_FAVORITE, payload: { photoId } });
@@ -24,8 +39,8 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        photos={photos}
-        topics={topics}
+        photos={state.photoData}
+        topics={state.topicData}
         openModal={openModal}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={state.favoritePhotoIds}

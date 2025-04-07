@@ -1,16 +1,20 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 
 export const ACTIONS = {
   TOGGLE_FAVORITE: "TOGGLE_FAVORITE",
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPIC_DATA: "SET_TOPIC_DATA",
   OPEN_MODAL: "OPEN_MODAL",
   CLOSE_MODAL: "CLOSE_MODAL",
 };
 
-export default function useApplicationData(photosData) {
+export default function useApplicationData(photoData) {
   const initialState = {
     favoritePhotoIds: [],
     selectedPhoto: {},
     isModalOpen: false,
+    photoData: [],
+    topicData: [],
   };
 
   const toggleFavorite = (state, photoId) => {
@@ -34,8 +38,12 @@ export default function useApplicationData(photosData) {
     switch (action.type) {
       case ACTIONS.TOGGLE_FAVORITE:
         return toggleFavorite(state, action.payload.photoId);
+      case ACTIONS.SET_PHOTO_DATA:
+        return { ...state, photoData: action.payload };
+      case ACTIONS.SET_TOPIC_DATA:
+        return { ...state, topicData: action.payload };
       case ACTIONS.OPEN_MODAL:
-        const photo = photosData.find(
+        const photo = state.photoData.find(
           (photo) => photo.id === action.payload.photoId
         );
         return openModal(state, photo);
