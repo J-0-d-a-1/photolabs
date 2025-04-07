@@ -10,20 +10,17 @@ import "./App.scss";
 const App = () => {
   const { state, dispatch } = useApplicationData();
 
-  // fetching photo data from api
-  useEffect(() => {
-    fetch("/api/photos")
+  const fetchAndDispatch = (url, actionTypes) => {
+    fetch(url)
       .then((res) => res.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
-      .catch((err) => console.log(err));
-  }, []);
+      .then((data) => dispatch({ type: actionTypes, payload: data }))
+      .catch((err) => console.error(`Error fetching ${url}`, err));
+  };
 
-  // fetching topic data from api
+  // fetching photo and topic data from api
   useEffect(() => {
-    fetch("/api/topics")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
-      .catch((err) => console.log(err));
+    fetchAndDispatch("/api/photos", ACTIONS.SET_PHOTO_DATA);
+    fetchAndDispatch("/api/topics", ACTIONS.SET_TOPIC_DATA);
   }, []);
 
   const toggleFavorite = (photoId) => {
