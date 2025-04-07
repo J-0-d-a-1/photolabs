@@ -9,7 +9,7 @@ export const ACTIONS = {
   GET_PHOTOS_BY_TOPICS: "GET_PHOTOS_BY_TOPICS",
 };
 
-export default function useApplicationData(photoData) {
+export default function useApplicationData() {
   const initialState = {
     favoritePhotoIds: [],
     selectedPhoto: {},
