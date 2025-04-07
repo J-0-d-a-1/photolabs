@@ -9,7 +9,7 @@ const PhotoListItem = (props) => {
     id,
     location,
   } = props.photo;
-  const { toggleFavorite, favoritePhotoIds, handleClickModal } = props;
+  const { toggleFavorite, favoritePhotoIds, openModal } = props;
 
   return (
     <div className="photo-list__item">
@@ -20,7 +20,9 @@ const PhotoListItem = (props) => {
       />
       <img
         id={id}
-        onClick={handleClickModal}
+        onClick={() => {
+          openModal(id);
+        }}
         className="photo-list__image"
         src={full}
         alt="photo"

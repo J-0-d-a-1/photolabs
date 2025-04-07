@@ -2,12 +2,7 @@ import PhotoListItem from "./PhotoListItem";
 
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({
-  photos,
-  toggleFavorite,
-  favoritePhotoIds,
-  handleClickModal,
-}) => {
+const PhotoList = ({ photos, toggleFavorite, favoritePhotoIds, openModal }) => {
   const photosList = photos.map((photo) => {
     return (
       <PhotoListItem
@@ -15,7 +10,7 @@ const PhotoList = ({
         photo={photo}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={favoritePhotoIds}
-        handleClickModal={handleClickModal}
+        openModal={openModal}
       />
     );
   });

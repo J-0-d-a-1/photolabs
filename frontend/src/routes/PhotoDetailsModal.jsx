@@ -5,15 +5,20 @@ import PhotoList from "../components/PhotoList";
 import "../styles/PhotoDetailsModal.scss";
 
 const PhotoDetailsModal = (props) => {
-  const { selectedPhoto, handleClickModal, toggleFavorite, favoritePhotoIds } =
-    props;
+  const {
+    selectedPhoto,
+    openModal,
+    closeModal,
+    toggleFavorite,
+    favoritePhotoIds,
+  } = props;
 
   const { id, location, urls, user, similar_photos } = selectedPhoto;
 
   return (
     <div className="photo-details-modal">
       <button
-        onClick={handleClickModal}
+        onClick={() => closeModal()}
         className="photo-details-modal__close-button"
       >
         <img src={closeSymbol} alt="close symbol" />
@@ -53,7 +58,7 @@ const PhotoDetailsModal = (props) => {
           photos={Object.values(similar_photos)}
           toggleFavorite={toggleFavorite}
           favoritePhotoIds={favoritePhotoIds}
-          handleClickModal={handleClickModal}
+          openModal={openModal}
         />
       </section>
     </div>
