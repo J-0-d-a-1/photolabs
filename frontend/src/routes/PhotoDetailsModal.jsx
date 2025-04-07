@@ -15,6 +15,8 @@ const PhotoDetailsModal = (props) => {
 
   const { id, location, urls, user, similar_photos } = selectedPhoto;
 
+  console.log(selectedPhoto);
+
   return (
     <div className="photo-details-modal">
       <button

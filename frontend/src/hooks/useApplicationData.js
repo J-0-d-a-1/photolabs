@@ -6,6 +6,7 @@ export const ACTIONS = {
   SET_TOPIC_DATA: "SET_TOPIC_DATA",
   OPEN_MODAL: "OPEN_MODAL",
   CLOSE_MODAL: "CLOSE_MODAL",
+  GET_PHOTOS_BY_TOPICS: "GET_PHOTOS_BY_TOPICS",
 };
 
 export default function useApplicationData(photoData) {
@@ -49,6 +50,8 @@ export default function useApplicationData(photoData) {
         return openModal(state, photo);
       case ACTIONS.CLOSE_MODAL:
         return closeModal(state);
+      case ACTIONS.GET_PHOTOS_BY_TOPICS:
+        return { ...state, photoData: action.payload };
       default:
         throw new Error(
           `Tried to reduce with unsupported action type: ${action.type}`

@@ -23,6 +23,12 @@ const App = () => {
     fetchAndDispatch("/api/topics", ACTIONS.SET_TOPIC_DATA);
   }, []);
 
+  // fetching selected topic
+  const fetchPhotoByTopic = (topicId) => {
+    const url = `/api/topics/${topicId}/photos`;
+    fetchAndDispatch(url, ACTIONS.GET_PHOTOS_BY_TOPICS);
+  };
+
   const toggleFavorite = (photoId) => {
     dispatch({ type: ACTIONS.TOGGLE_FAVORITE, payload: { photoId } });
   };
@@ -38,6 +44,7 @@ const App = () => {
       <HomeRoute
         photos={state.photoData}
         topics={state.topicData}
+        fetchPhotoByTopic={fetchPhotoByTopic}
         openModal={openModal}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={state.favoritePhotoIds}
