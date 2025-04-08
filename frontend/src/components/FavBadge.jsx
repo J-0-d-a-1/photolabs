@@ -14,6 +14,7 @@ const FavBadge = ({
   const handleClick = () => {
     if (isOpenFavPhotos) {
       getFavoritesPhotoList(favoritePhotoIds);
+      setIsOpenFavPhotos((prev) => !prev);
     } else {
       setIsOpenFavPhotos((prev) => !prev);
     }

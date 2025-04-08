@@ -7,15 +7,15 @@ export const ACTIONS = {
   OPEN_MODAL: "OPEN_MODAL",
   CLOSE_MODAL: "CLOSE_MODAL",
   GET_PHOTOS_BY_TOPICS: "GET_PHOTOS_BY_TOPICS",
-  GET_FAVORITES_PHOTOS: "GET_FAVORITES_PHOTOS",
+  GET_FAVORITE_PHOTOS: "GET_FAVORITE_PHOTOS",
 };
 
 export default function useApplicationData() {
   const initialState = {
     favoritePhotoIds: [],
-    favoritePhotoList: [],
     selectedPhoto: {},
     isModalOpen: false,
+    isFavoriteOpen: false,
     photoData: [],
     topicData: [],
   };
@@ -29,12 +29,19 @@ export default function useApplicationData() {
     return { ...state, favoritePhotoIds: updatedFavorites };
   };
 
-  const getFavoritesPhotoList = (state, favPhotoIds) => {
-    const updatedFavoritePhotoList = state.photoData.filter((photo) =>
-      favPhotoIds.includes(photo.id)
-    );
+  const showFavoritesPhotoList = (state, favPhotoIds) => {
+    const updatedFavoritePhotoList =
+      !state.isFavoriteOpen && state.favoritePhotoIds.length > 0
+        ? state.photoData.filter((photo) => favPhotoIds.includes(photo.id))
+        : state.photoData;
 
-    return { ...state, favoritePhotoList: updatedFavoritePhotoList };
+    const updatedIsFavoriteOpen = !state.isFavoriteOpen;
+
+    return {
+      ...state,
+      isFavoriteOpen: updatedIsFavoriteOpen,
+      photoData: updatedFavoritePhotoList,
+    };
   };
 
   const openModal = (state, photo) => {
@@ -62,8 +69,8 @@ export default function useApplicationData() {
         return closeModal(state);
       case ACTIONS.GET_PHOTOS_BY_TOPICS:
         return { ...state, photoData: action.payload };
-      case ACTIONS.GET_FAVORITES_PHOTOS:
-        return getFavoritesPhotoList(state, action.payload.favoritePhotoIds);
+      case ACTIONS.GET_FAVORITE_PHOTOS:
+        return showFavoritesPhotoList(state, action.payload.favoritePhotoIds);
       default:
         throw new Error(
           `Tried to reduce with unsupported action type: ${action.type}`

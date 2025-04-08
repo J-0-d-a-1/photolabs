@@ -33,10 +33,10 @@ const App = () => {
     dispatch({ type: ACTIONS.TOGGLE_FAVORITE, payload: { photoId } });
   };
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = (favoritePhotoIds) => {
     dispatch({
-      type: ACTIONS.GET_FAVORITES_PHOTOS,
-      payload: { favoritePhotoIds: state.favoritePhotoIds },
+      type: ACTIONS.GET_FAVORITE_PHOTOS,
+      payload: { favoritePhotoIds },
     });
   };
 
