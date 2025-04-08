@@ -33,6 +33,13 @@ const App = () => {
     dispatch({ type: ACTIONS.TOGGLE_FAVORITE, payload: { photoId } });
   };
 
+  const handleFavoriteClick = () => {
+    dispatch({
+      type: ACTIONS.GET_FAVORITES_PHOTOS,
+      payload: { favoritePhotoIds: state.favoritePhotoIds },
+    });
+  };
+
   const openModal = (photoId) => {
     dispatch({ type: ACTIONS.OPEN_MODAL, payload: { photoId } });
   };
@@ -48,6 +55,8 @@ const App = () => {
         openModal={openModal}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={state.favoritePhotoIds}
+        favoritePhotoList={state.favoritePhotoList}
+        getFavoritesPhotoList={handleFavoriteClick}
       />
       {state.isModalOpen && (
         <PhotoDetailsModal

@@ -9,17 +9,24 @@ const HomeRoute = ({
   fetchPhotoByTopic,
   toggleFavorite,
   favoritePhotoIds,
+  favoritePhotoList,
   openModal,
+  getFavoritesPhotoList,
 }) => {
+  const photosToDisplay = favoritePhotoList?.length
+    ? favoritePhotoList
+    : photos;
+
   return (
     <div className="home-route">
       <TopNavigation
         topics={topics}
         favoritePhotoIds={favoritePhotoIds}
         fetchPhotoByTopic={fetchPhotoByTopic}
+        getFavoritesPhotoList={getFavoritesPhotoList}
       />
       <PhotoList
-        photos={photos}
+        photos={photosToDisplay}
         toggleFavorite={toggleFavorite}
         favoritePhotoIds={favoritePhotoIds}
         openModal={openModal}
